@@ -61,10 +61,10 @@ class CategoryController extends Controller
         $newItem->quantity = $request->quantity;
         $newItem->sku = $request->sku;
         
-        // SAVE PICTURE AND THEN UPLOAD THE PATH TO THE PICTURE
-
-
         // $request->validate(['picture' => 'required|image|mimes:webp,jpeg,png,jpg,gif']);
+        // I couldn't get this to work, when it failed it just broke.
+        // I tried with try-catch, but it just didn't happen.
+        // I just made it so they can upload any file they want.
         $image = $request->file('picture');
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('images'), $imageName);
@@ -85,6 +85,44 @@ class CategoryController extends Controller
     public function editCategory($id) {
         $catID = categories::findOrFail($id);
         return view('editcat', ['categories' => $catID]);
+    }
+
+
+    public function alterItem(Request $request, $id) {
+
+        $duplicateName = items::where('name', $request->itemname)->where('item_id', '!=', $id)->first(); // Check if the name already exists and is another item
+        $duplicateSKU = items::where('sku', $request->sku)->where('item_id', '!=', $id)->first(); // Check if the SKU already exists and is another item
+        if ($duplicateName || $duplicateSKU) { 
+            return redirect('/items');
+        }
+
+        $editItem = items::findOrFail($id);
+        $editItem->category_id = $request->categoryid;
+        $editItem->name = $request->itemname;
+        $editItem->description = $request->desc;
+        $editItem->price = $request->price;
+        $editItem->quantity = $request->quantity;
+        $editItem->sku = $request->sku;
+        if ($request->picture != null) {
+            $image = $request->file('picture');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $editItem->picture_path = 'images/' . $imageName;
+        }
+        $editItem->save();
+        return redirect('/items');
+    }
+
+    public function alterCategory(Request $request, $id) {
+        $duplicate = categories::where('category', $request->categoryname)->first(); // Check if the category already exists
+        if ($duplicate) {
+            return redirect('/categories');
+        }
+        $editCategory = categories::findOrFail($id);
+        $editCategory->category = $request->categoryname;
+        $editCategory->save();
+
+        return redirect('/categories');
     }
 
     

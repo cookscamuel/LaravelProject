@@ -33,5 +33,8 @@ Route::get('/items/create', function () {
 })->name('/items/create');
 
 
-Route::post('/items/{id}/edit', [CategoryController::class, 'editItem'])->name('items.edit');
-Route::post('/categories/{id}/edit', [CategoryController::class, 'editCategory'])->name('categories.edit');
+Route::post('/items/{id}/edit', [CategoryController::class, 'editItem'])->name('/items/{id}/edit');
+Route::post('/categories/{id}/edit', [CategoryController::class, 'editCategory'])->name('/categories/{id}/edit');
+
+Route::post('/items/{id}/edit/results', [CategoryController::class, 'alterItem'])->name('/items/{id}/edit/results');
+Route::post('/categories/{id}/edit/results', [CategoryController::class, 'alterCategory'])->name('/categories/{id}/edit/results');

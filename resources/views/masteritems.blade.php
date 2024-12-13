@@ -44,7 +44,7 @@
             <td><img src="{{ $item->picture_path }}" alt="{{ $item->name }}" width="100vw" height="100vw"></td>
             <!-- WRAP IN IMAGE TAG -->
             <td>
-            <form action="{{ route('items.edit', ['id' => $item->item_id]) }}" method="post" accept-charset="UTF-8">
+            <form action="{{ route('/items/{id}/edit', ['id' => $item->item_id]) }}" method="post" accept-charset="UTF-8">
                 {{ csrf_field() }}
                 <input type="submit" value="Edit">
             </form>

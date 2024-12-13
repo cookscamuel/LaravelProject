@@ -20,7 +20,7 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <h1>Edit Category</h1>
-        <form action="{{ route('/categories/create/results') }}" method="post" accept-charset="UTF-8" style="width: 20vw;">
+        <form action="{{ route('/categories/{id}/edit/results', ['id' => $categories->category_id]) }}" method="post" accept-charset="UTF-8" style="width: 20vw;">
             {{ csrf_field() }}
 
             <label for="categoryname">Category Name</label>

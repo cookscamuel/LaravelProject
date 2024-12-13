@@ -21,7 +21,7 @@
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <h1>Edit Item</h1>
         <fieldset style="width: 30vw;">
-        <form action="{{ route('/items/create/results') }}" method="post" accept-charset="UTF-8">
+        <form action="{{ route('/items/{id}/edit/results', ['id' => $items->item_id]) }}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <label for="itemname">Item Name:</label>
@@ -50,6 +50,8 @@
             <label for="sku">SKU:</label>
             <input type="text" name="sku" autocomplete="off" value="{{ $items->sku }}" required>
             <br/><br/>
+            <label>Current Image:</label>
+            <br/>
             <img src="{{ asset($items->picture_path) }}" alt="Product" width="100vw" height="100vw">
             <br/><br/>
             <label for="picture">Change Image:</label>

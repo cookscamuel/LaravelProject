@@ -30,7 +30,7 @@
             <td>{{ $cat->category_id }}</td>
             <td>{{ $cat->category }}</td>
             <td>
-            <form action="{{ route('categories.edit', ['id' => $cat->category_id]) }}" method="post" accept-charset="UTF-8">
+            <form action="{{ route('/categories/{id}/edit', ['id' => $cat->category_id]) }}" method="post" accept-charset="UTF-8">
                 {{ csrf_field() }}
                 <input type="submit" value="Edit">
             </form>
