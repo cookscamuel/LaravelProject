@@ -43,8 +43,15 @@
             <td>{{ $item->sku }}</td>
             <td>{{ $item->picture_path }}</td>
             <!-- WRAP IN IMAGE TAG -->
-            <td>Edit</td>
-            <td>Delete</td>
+            <td>
+            <form action="{{ route('items.edit', ['id' => $item->item_id]) }}" method="post" accept-charset="UTF-8">
+                {{ csrf_field() }}
+                <input type="submit" value="Edit">
+            </form>
+            </td>
+            <td>
+            <button type="button">Delete with JS</button>
+            </td>
             </tr>
             @endforeach
         </table>

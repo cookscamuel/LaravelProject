@@ -55,5 +55,16 @@ class CategoryController extends Controller
         return redirect('/items');
 
     }
+
+    public function editItem($id) { 
+        $itemID = items::findOrFail($id); 
+        return view('edititem', ['items' => $itemID]); 
+    }
+
+    public function editCategory($id) {
+        $catID = categories::findOrFail($id);
+        return view('editcat', ['categories' => $catID]);
+    }
+
     
 }

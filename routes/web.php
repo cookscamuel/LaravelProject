@@ -31,3 +31,7 @@ Route::get('/items', [CategoryController::class, 'showMasterItems'])->name('/ite
 Route::get('/items/create', function () {
     return view('additem');
 })->name('/items/create');
+
+
+Route::post('/items/{id}/edit', [CategoryController::class, 'editItem'])->name('items.edit');
+Route::post('/categories/{id}/edit', [CategoryController::class, 'editCategory'])->name('categories.edit');
