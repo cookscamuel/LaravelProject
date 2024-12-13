@@ -34,8 +34,8 @@
             @foreach ($allItems as $item)
             <tr>
             <td>{{ $item->item_id }}</td>
-            <td>{{ $allCats[$item->category_id - 1]->category }}</td>
-            <!-- CONVERT IT TO THE CATGEORY NAME WITH OTHER TABLE -->
+            <td>{{ $allCats[$item->category_id - 1]->category }}</td> 
+            <!-- Display the name of the category rather than the ID -->
             <td>{{ $item->name }}</td>
             <td>{{ $item->description }}</td>
             <td>${{ $item->price }}</td>

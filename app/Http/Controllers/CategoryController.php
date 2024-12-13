@@ -34,16 +34,26 @@ class CategoryController extends Controller
 
 
     public function insertCategory(Request $request) {
-        $newCategory = new categories;
-        $newCategory->category = $request->categoryname;
-        $newCategory->save(); 
-        $categories = categories::all();
-        return redirect('/categories');
+        $duplicate = categories::where('category', $request->categoryname)->first(); // Check if the category already exists
+        if ($duplicate) {
+            return redirect('/categories');
+        }
+        else {
+            $newCategory = new categories;
+            $newCategory->category = $request->categoryname;
+            $newCategory->save(); 
+            $categories = categories::all();
+            return redirect('/categories');
+        }
     }
 
     public function insertItem(Request $request) {
+        $duplicateName = items::where('name', $request->itemname)->first(); // Check if the name already exists
+        $duplicateSKU = items::where('sku', $request->sku)->first(); // Check if the SKU already exists
+        if ($duplicateName || $duplicateSKU) { // Check if the SKU or name already exists
+            return redirect('/items');
+        }
         $newItem = new items;
-        // QUERY FOR CATEGORY ID
         $newItem->category_id = $request->categoryid;
         $newItem->name = $request->itemname;
         $newItem->description = $request->desc;

@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('item_id');
             $table->integer('category_id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('description');
             $table->double('price');
             $table->integer('quantity');
-            $table->string('sku');
+            $table->string('sku')->unique();
             $table->string('picture_path');
             $table->timestamps();
         });
