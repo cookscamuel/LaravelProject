@@ -29,7 +29,9 @@
             <br/><br/>
             <label for="categoryid">Category:</label>
             <select name="categoryid" id="categoryid">
-                <option value="volvo">USE PHP TO QUERY FOR CATEGORY IDS</option>
+                @foreach ($allCats as $cat)
+                <option value="{{ $cat->category_id }}">{{ $cat->category}}</option>
+                @endforeach
             </select>
             <br/><br/>
             <label for="desc">Description:</label>

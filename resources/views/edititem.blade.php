@@ -29,7 +29,13 @@
             <br/><br/>
             <label for="categoryid">Category:</label>
             <select name="categoryid" id="categoryid">
-                <option value="volvo">USE PHP TO QUERY FOR CATEGORY IDS</option>
+                @foreach ($allCats as $cat)
+                    @if ($cat->category_id == $items->category_id) <!-- check to see if the option is the one that is already selected -->
+                        <option value="{{ $cat->category_id }}" selected>{{ $cat->category }}</option>
+                    @else
+                        <option value="{{ $cat->category_id }}">{{ $cat->category }}</option>
+                    @endif
+                @endforeach
             </select>
             <br/><br/>
             <label for="desc">Description:</label>

@@ -34,7 +34,7 @@
             @foreach ($allItems as $item)
             <tr>
             <td>{{ $item->item_id }}</td>
-            <td>{{ $item->category_id }}</td>
+            <td>{{ $allCats[$item->category_id - 1]->category }}</td>
             <!-- CONVERT IT TO THE CATGEORY NAME WITH OTHER TABLE -->
             <td>{{ $item->name }}</td>
             <td>{{ $item->description }}</td>

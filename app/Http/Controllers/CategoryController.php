@@ -18,7 +18,8 @@ class CategoryController extends Controller
     }
 
     public function showMasterItems() {
-        return view('masteritems', ['allItems' => items::all()]);
+        $allCats = categories::all();
+        return view('masteritems', ['allItems' => items::all(), 'allCats' => $allCats]);
     }
 
     public function addCategory() {
@@ -26,7 +27,8 @@ class CategoryController extends Controller
     }
 
     public function addItem() {
-        return view('additem');
+        $allCats = categories::all();
+        return view('additem', ['allCats' => $allCats]);
     }
 
 
@@ -42,7 +44,7 @@ class CategoryController extends Controller
     public function insertItem(Request $request) {
         $newItem = new items;
         // QUERY FOR CATEGORY ID
-        $newItem->category_id = 0;
+        $newItem->category_id = $request->categoryid;
         $newItem->name = $request->itemname;
         $newItem->description = $request->desc;
         $newItem->price = $request->price;
@@ -58,7 +60,8 @@ class CategoryController extends Controller
 
     public function editItem($id) { 
         $itemID = items::findOrFail($id); 
-        return view('edititem', ['items' => $itemID]); 
+        $allCats = categories::all();
+        return view('edititem', ['items' => $itemID, 'allCats' => $allCats]);
     }
 
     public function editCategory($id) {
