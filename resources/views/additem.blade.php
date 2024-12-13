@@ -21,7 +21,7 @@
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <h1>New Item</h1>
         <fieldset style="width: 30vw;">
-        <form>
+        <form action="{{ route('/items/create/results') }}" method="post" accept-charset="UTF-8">
             {{ csrf_field() }}
 
             <label for="itemname">Item Name:</label>
@@ -36,19 +36,17 @@
             <input type="text" name="desc" autocomplete="off" required>
             <br/><br/>
             <label for="price">Price: $</label>
-            <input type="number" name="price" autocomplete="off" step="0.01" min="0" required>
+            <input type="number" name="price" autocomplete="off" min="0" step="0.01" pattern="^[\d.]+$" required>
             <br/><br/>
             <label for="quantity">Quantity:</label>
             <input type="number" name="quantity" autocomplete="off" min="0" pattern="^[\d.]+$" required>
-
-            <!-- $table->increments('item_id');
-            $table->integer('category_id');
-            $table->string('name');
-            $table->string('description');
-            $table->double('price');
-            $table->integer('quantity');
-            $table->string('sku');
-            $table->string('picture_path'); -->
+            <br/><br/>
+            <label for="sku">SKU:</label>
+            <input type="text" name="sku" autocomplete="off" required>
+            <br/><br/>
+            <label for="picture">Image:</label>
+            <input type="file" name="picture" required>
+            <br/><br/>
             <input type="submit" value="Create Item">
         </form>
         <br/>

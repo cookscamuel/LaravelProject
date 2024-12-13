@@ -20,9 +20,21 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <h1>Categories</h1>
-        <h2>All Categories</h2>
-        <div id="allcategories">
-        </div>
+        <table id="allcategories" border="1">
+            <tr>
+            <th>ID</th>
+            <th>Category Name</th>
+            </tr>
+            @foreach ($allCats as $cat)
+            <tr>
+            <td>{{ $cat->category_id }}</td>
+            <td>{{ $cat->category }}</td>
+            <td>Edit</td>
+            <td>Delete</td>
+            </tr>
+            @endforeach
+        </table>
+        <br/>
         <form action="{{ route('/categories/create') }}" method="post" accept-charset="UTF-8" style="width: 20vw;">
             {{ csrf_field() }}
                 <input type="submit" value="Add New Category">

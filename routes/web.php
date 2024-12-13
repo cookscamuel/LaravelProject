@@ -16,21 +16,17 @@ Route::post('/categories/create', [CategoryController::class, 'addCategory'])->n
 Route::post('/categories/create/results', [CategoryController::class, 'insertCategory'])->name('/categories/create/results');
 
 Route::post('/items/create', [CategoryController::class, 'addItem'])->name('/items/create');
+Route::post('/items/create/results', [CategoryController::class, 'insertItem'])->name('/items/create/results');
 
 
-
-
-Route::get('/categories', function () {
-    return view('mastercat');
-})->name('/categories');
+Route::get('/categories', [CategoryController::class, 'showMasterCat'])->name('/categories');
 
 Route::get('/categories/create', function () {
     return view('addcat');
 })->name('/categories/create');
 
-Route::get('/items', function () {
-    return view('masteritems');
-})->name('/items');
+
+Route::get('/items', [CategoryController::class, 'showMasterItems'])->name('/items');
 
 Route::get('/items/create', function () {
     return view('additem');

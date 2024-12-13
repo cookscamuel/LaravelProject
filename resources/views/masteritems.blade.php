@@ -20,9 +20,29 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <h1>Items</h1>
-        <h2>All Items</h2>
-        <div id="allitems">
-        </div>
+        <table id="allitems" border="1">
+            <tr>
+            <th>ID</th>
+            <th>Item Name</th>
+            </tr>
+            @foreach ($allItems as $item)
+            <tr>
+            <td>{{ $item->item_id }}</td>
+            <td>{{ $item->category_id }}</td>
+            <!-- CONVERT IT TO THE CATGEORY NAME WITH OTHER TABLE -->
+            <td>{{ $item->name }}</td>
+            <td>{{ $item->description }}</td>
+            <td>${{ $item->price }}</td>
+            <td>{{ $item->quantity }}</td>
+            <td>{{ $item->sku }}</td>
+            <td>{{ $item->picture_path }}</td>
+            <!-- WRAP IN IMAGE TAG -->
+            <td>Edit</td>
+            <td>Delete</td>
+            </tr>
+            @endforeach
+        </table>
+        <br/>
         <form action="{{ route('/items/create') }}" method="post" accept-charset="UTF-8" style="width: 20vw;">
             {{ csrf_field() }}
                 <input type="submit" value="Add New Item">

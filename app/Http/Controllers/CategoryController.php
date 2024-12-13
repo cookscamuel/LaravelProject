@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\models\categories;
-use App\models\items;
+use App\Models\categories;
+use App\Models\items;
 
 class CategoryController extends Controller
 {
@@ -14,11 +14,11 @@ class CategoryController extends Controller
     }
 
     public function showMasterCat() {
-        return redirect('/categories');
+        return view('mastercat', ['allCats' => categories::all()]);
     }
 
     public function showMasterItems() {
-        return redirect('/items');
+        return view('masteritems', ['allItems' => items::all()]);
     }
 
     public function addCategory() {
@@ -29,16 +29,31 @@ class CategoryController extends Controller
         return view('additem');
     }
 
+
+
     public function insertCategory(Request $request) {
         $newCategory = new categories;
         $newCategory->category = $request->categoryname;
         $newCategory->save(); 
-        return view('newcatresults');
+        $categories = categories::all();
+        return redirect('/categories');
     }
 
-    // public function insertItem(Request $request) {
-    //     $newItem = new items;
-    //     $newItem->
-    // }
+    public function insertItem(Request $request) {
+        $newItem = new items;
+        // QUERY FOR CATEGORY ID
+        $newItem->category_id = 0;
+        $newItem->name = $request->itemname;
+        $newItem->description = $request->desc;
+        $newItem->price = $request->price;
+        $newItem->quantity = $request->quantity;
+        $newItem->sku = $request->sku;
+        // SAVE PICTURE AND THEN UPLOAD THE PATH TO THE PICTURE
+        $newItem->picture_path = "IMAGE LINK";
+        $newItem->save();
+        $items = items::all();
+        return redirect('/items');
+
+    }
     
 }
