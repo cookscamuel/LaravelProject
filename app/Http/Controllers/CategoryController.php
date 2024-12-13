@@ -60,11 +60,19 @@ class CategoryController extends Controller
         $newItem->price = $request->price;
         $newItem->quantity = $request->quantity;
         $newItem->sku = $request->sku;
+        
         // SAVE PICTURE AND THEN UPLOAD THE PATH TO THE PICTURE
-        $newItem->picture_path = "IMAGE LINK";
+
+
+        // $request->validate(['picture' => 'required|image|mimes:webp,jpeg,png,jpg,gif']);
+        $image = $request->file('picture');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images'), $imageName);
+        $newItem->picture_path = 'images/' . $imageName;
         $newItem->save();
         $items = items::all();
         return redirect('/items');
+        
 
     }
 

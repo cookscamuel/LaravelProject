@@ -41,7 +41,7 @@
             <td>${{ $item->price }}</td>
             <td>{{ $item->quantity }}</td>
             <td>{{ $item->sku }}</td>
-            <td>{{ $item->picture_path }}</td>
+            <td><img src="{{ $item->picture_path }}" alt="{{ $item->name }}" width="100vw" height="100vw"></td>
             <!-- WRAP IN IMAGE TAG -->
             <td>
             <form action="{{ route('items.edit', ['id' => $item->item_id]) }}" method="post" accept-charset="UTF-8">

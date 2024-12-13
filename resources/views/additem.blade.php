@@ -21,7 +21,7 @@
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <h1>New Item</h1>
         <fieldset style="width: 30vw;">
-        <form action="{{ route('/items/create/results') }}" method="post" accept-charset="UTF-8">
+        <form action="{{ route('/items/create/results') }}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <label for="itemname">Item Name:</label>
@@ -47,7 +47,8 @@
             <input type="text" name="sku" autocomplete="off" required>
             <br/><br/>
             <label for="picture">Image:</label>
-            <input type="file" name="picture" required>
+            <input type="file" name="picture" accept=".jpeg,.jpg,.png,.gif,.webp" required>
+            <p><i>Supported file types: .jpeg .jpg .png .gif .webp</i></p>
             <br/><br/>
             <input type="submit" value="Create Item">
         </form>

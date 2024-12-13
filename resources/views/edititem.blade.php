@@ -50,8 +50,10 @@
             <label for="sku">SKU:</label>
             <input type="text" name="sku" autocomplete="off" value="{{ $items->sku }}" required>
             <br/><br/>
-            <label for="picture">Image:</label>
-            <input type="file" name="picture" required>
+            <img src="{{ asset($items->picture_path) }}" alt="Product" width="100vw" height="100vw">
+            <br/><br/>
+            <label for="picture">Change Image:</label>
+            <input type="file" name="picture">
             <br/><br/>
             <input type="submit" value="Confirm Changes">
         </form>
