@@ -24,7 +24,7 @@
             {{ csrf_field() }}
 
             <label for="categoryname">Category Name</label>
-            <input type="text" name="categoryname" autocomplete="off" required>
+            <input type="text" name="categoryname" autocomplete="off" maxlength="254" required>
             <br/><br/>
             <input type="submit" value="Create Category">
         </form>

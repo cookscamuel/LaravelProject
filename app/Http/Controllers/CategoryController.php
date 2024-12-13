@@ -1,5 +1,6 @@
 <?php
-
+// I called this category controller at the start, but it handles every single function used by every route.
+// This probably isn't best practice, but 
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -123,6 +124,13 @@ class CategoryController extends Controller
         $editCategory->save();
 
         return redirect('/categories');
+    }
+
+    public function deleteItem($id) {
+        $deleteItem = items::findOrFail($id);
+        unlink(public_path($deleteItem->picture_path));
+        $deleteItem->delete();
+        return redirect('/items');
     }
 
     

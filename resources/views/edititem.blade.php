@@ -55,7 +55,7 @@
             <img src="{{ asset($items->picture_path) }}" alt="Product" width="100vw" height="100vw">
             <br/><br/>
             <label for="picture">Change Image:</label>
-            <input type="file" name="picture">
+            <input type="file" name="picture" accept=".jpeg,.jpg,.png,.gif,.webp" maxlength="254">
             <br/><br/>
             <input type="submit" value="Confirm Changes">
         </form>

@@ -35,7 +35,6 @@
                 <input type="submit" value="Edit">
             </form>
             </td>
-            <td>Delete</td>
             </tr>
             @endforeach
         </table>

@@ -50,7 +50,10 @@
             </form>
             </td>
             <td>
-            <button type="button">Delete with JS</button>
+            <form id="deleteform-{{ $item->item_id }}" action="{{ route('/items/{id}/delete', ['id' => $item->item_id]) }}" method="post" accept-charset="UTF-8">
+                {{ csrf_field() }}
+                <button type="button" onclick="deleteItem({{ json_encode($item->name) }}, {{ json_encode($item->item_id) }})">Delete</button>
+            </form>
             </td>
             </tr>
             @endforeach
@@ -65,5 +68,14 @@
             {{ csrf_field() }}
                 <input type="submit" value="Main Menu">
         </form>
+        <script>
+        function deleteItem(itemname, itemid) {
+            var formID = "deleteform-" + itemid; 
+            var deleteform = document.getElementById(formID);
+            if (confirm("Are you sure you want to delete " + itemname + " from the list?")) {
+                deleteform.submit();
+            }
+        }
+        </script>
     </body>
 </html>

@@ -25,7 +25,7 @@
             {{ csrf_field() }}
 
             <label for="itemname">Item Name:</label>
-            <input type="text" name="itemname" autocomplete="off" required>
+            <input type="text" name="itemname" autocomplete="off" maxlength="254" required>
             <br/><br/>
             <label for="categoryid">Category:</label>
             <select name="categoryid" id="categoryid">
@@ -35,7 +35,7 @@
             </select>
             <br/><br/>
             <label for="desc">Description:</label>
-            <input type="text" name="desc" autocomplete="off" required>
+            <input type="text" name="desc" autocomplete="off" maxlength="254" required>
             <br/><br/>
             <label for="price">Price: $</label>
             <input type="number" name="price" autocomplete="off" min="0" step="0.01" pattern="^[\d.]+$" required>
@@ -44,10 +44,10 @@
             <input type="number" name="quantity" autocomplete="off" min="0" pattern="^[\d.]+$" required>
             <br/><br/>
             <label for="sku">SKU:</label>
-            <input type="text" name="sku" autocomplete="off" required>
+            <input type="text" name="sku" autocomplete="off" maxlength="254" required>
             <br/><br/>
             <label for="picture">Image:</label>
-            <input type="file" name="picture" accept=".jpeg,.jpg,.png,.gif,.webp" required>
+            <input type="file" name="picture" accept=".jpeg,.jpg,.png,.gif,.webp" maxlength="254" required>
             <p><i>Supported file types: .jpeg .jpg .png .gif .webp</i></p>
             <br/><br/>
             <input type="submit" value="Create Item">
