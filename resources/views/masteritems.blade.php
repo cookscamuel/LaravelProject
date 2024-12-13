@@ -23,7 +23,13 @@
         <table id="allitems" border="1">
             <tr>
             <th>ID</th>
+            <th>Category</th>
             <th>Item Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>On-Hand</th>
+            <th>SKU</th>
+            <th>Image</th>
             </tr>
             @foreach ($allItems as $item)
             <tr>
