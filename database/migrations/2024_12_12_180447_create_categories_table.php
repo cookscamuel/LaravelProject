@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->increments('category_id');
-            $table->string('category')->unique();
+        Schema::create('categories', function (Blueprint $table) { // This is a schema that allows for easy table creation.
+            $table->increments('category_id'); // increments makes it PK
+            $table->string('category')->unique(); // Force unique constraint on category name.
             $table->timestamps();
         });
     }

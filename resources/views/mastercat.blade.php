@@ -1,3 +1,9 @@
+<!--
+    Author: Samuel Cook
+    Date: December 12, 2024
+    Sorry for clunkiness, this was all new to me.
+-->
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -20,16 +26,19 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <h1>Categories</h1>
+        <!-- Display all catgories nicely in a table. -->
         <table id="allcategories" border="1">
             <tr>
             <th>ID</th>
             <th>Category Name</th>
             </tr>
+            <!-- Loop through all catagories and make cells for them. -->
             @foreach ($allCats as $cat)
             <tr>
             <td>{{ $cat->category_id }}</td>
             <td>{{ $cat->category }}</td>
             <td>
+            <!-- Make an edit button for each category, uses its unique ID. -->
             <form action="{{ route('/categories/{id}/edit', ['id' => $cat->category_id]) }}" method="post" accept-charset="UTF-8">
                 {{ csrf_field() }}
                 <input type="submit" value="Edit">
@@ -39,6 +48,7 @@
             @endforeach
         </table>
         <br/>
+        <!-- Add new category button. -->
         <form action="{{ route('/categories/create') }}" method="post" accept-charset="UTF-8" style="width: 20vw;">
             {{ csrf_field() }}
                 <input type="submit" value="Add New Category">

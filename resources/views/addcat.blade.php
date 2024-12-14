@@ -1,3 +1,9 @@
+<!--
+    Author: Samuel Cook
+    Date: December 12, 2024
+    Sorry for clunkiness, this was all new to me.
+-->
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -20,10 +26,12 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <h1>New Category</h1>
+        <!-- Form for adding a new category. -->
         <form action="{{ route('/categories/create/results') }}" method="post" accept-charset="UTF-8" style="width: 20vw;">
             {{ csrf_field() }}
 
-            <label for="categoryname">Category Name</label>
+            <!-- Instead of error messages, I just tell the user when they enter. -->
+            <label for="categoryname">Category Name (must be unique)</label>
             <input type="text" name="categoryname" autocomplete="off" maxlength="254" required>
             <br/><br/>
             <input type="submit" value="Create Category">
@@ -32,6 +40,7 @@
         <form action="{{ route('/categories') }}" method="post" accept-charset="UTF-8">
             {{ csrf_field() }}
                 <input type="submit" value="Cancel">
+                <!-- I wasn't sure of a better way to do this at the start, so there are forms everywhere. -->
         </form>
     </body>
 </html>

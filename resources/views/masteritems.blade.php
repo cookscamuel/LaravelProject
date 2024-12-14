@@ -1,3 +1,9 @@
+<!--
+    Author: Samuel Cook
+    Date: December 12, 2024
+    Sorry for clunkiness, this was all new to me.
+-->
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -20,6 +26,7 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <h1>Items</h1>
+        <!-- Display all items in a table. -->
         <table id="allitems" border="1">
             <tr>
             <th>ID</th>
@@ -31,27 +38,31 @@
             <th>SKU</th>
             <th>Image</th>
             </tr>
+            <!-- Display every item. -->
             @foreach ($allItems as $item)
             <tr>
             <td>{{ $item->item_id }}</td>
-            <td>{{ $allCats[$item->category_id - 1]->category }}</td> 
             <!-- Display the name of the category rather than the ID -->
+            <td>{{ $allCats[$item->category_id - 1]->category }}</td> 
             <td>{{ $item->name }}</td>
             <td>{{ $item->description }}</td>
             <td>${{ $item->price }}</td>
             <td>{{ $item->quantity }}</td>
             <td>{{ $item->sku }}</td>
+            <!-- Display the image path as an image. -->
             <td><img src="{{ $item->picture_path }}" alt="{{ $item->name }}" width="100vw" height="100vw"></td>
-            <!-- WRAP IN IMAGE TAG -->
             <td>
+            <!-- Edit button for the unique ID for each item. -->
             <form action="{{ route('/items/{id}/edit', ['id' => $item->item_id]) }}" method="post" accept-charset="UTF-8">
                 {{ csrf_field() }}
                 <input type="submit" value="Edit">
             </form>
             </td>
             <td>
+            <!-- Delete button for each item using its unique ID. -->
             <form id="deleteform-{{ $item->item_id }}" action="{{ route('/items/{id}/delete', ['id' => $item->item_id]) }}" method="post" accept-charset="UTF-8">
                 {{ csrf_field() }}
+                <!-- Button that will execute my JS function to confirm deletion. -->
                 <button type="button" onclick="deleteItem({{ json_encode($item->name) }}, {{ json_encode($item->item_id) }})">Delete</button>
             </form>
             </td>
@@ -59,6 +70,7 @@
             @endforeach
         </table>
         <br/>
+        <!-- Add a new item button. -->
         <form action="{{ route('/items/create') }}" method="post" accept-charset="UTF-8" style="width: 20vw;">
             {{ csrf_field() }}
                 <input type="submit" value="Add New Item">
@@ -68,12 +80,13 @@
             {{ csrf_field() }}
                 <input type="submit" value="Main Menu">
         </form>
+        <!-- JS function that makes a popup confirming if the user wants to delete an item. -->
         <script>
         function deleteItem(itemname, itemid) {
-            var formID = "deleteform-" + itemid; 
-            var deleteform = document.getElementById(formID);
-            if (confirm("Are you sure you want to delete " + itemname + " from the list?")) {
-                deleteform.submit();
+            var formID = "deleteform-" + itemid; // Get the unique ID from the specific delete button form.
+            var deleteform = document.getElementById(formID); // Target the specific form.
+            if (confirm("Are you sure you want to delete " + itemname + " from the list?")) { // If they click yes.
+                deleteform.submit(); // Submit the form.
             }
         }
         </script>

@@ -1,3 +1,9 @@
+<!--
+    Author: Samuel Cook
+    Date: December 12, 2024
+    Sorry for clunkiness, this was all new to me.
+-->
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -23,6 +29,7 @@
         <fieldset style="width: 15vw;">
         <legend>Management Options</legend>
         <br/>
+        <!-- Let the user pick from one of two options. -->
         <form action="{{ route('/categories') }}" method="post" accept-charset="UTF-8">
             {{ csrf_field() }}
                 <input type="submit" value="Category Master List">

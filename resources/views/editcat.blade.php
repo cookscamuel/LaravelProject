@@ -1,3 +1,9 @@
+<!--
+    Author: Samuel Cook
+    Date: December 12, 2024
+    Sorry for clunkiness, this was all new to me.
+-->
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -20,10 +26,12 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <h1>Edit Category</h1>
+        <!-- Form for submitting a edited category. -->
         <form action="{{ route('/categories/{id}/edit/results', ['id' => $categories->category_id]) }}" method="post" accept-charset="UTF-8" style="width: 20vw;">
             {{ csrf_field() }}
 
-            <label for="categoryname">Category Name</label>
+            <!-- Inform the user of the rules of war, I mean entry. -->
+            <label for="categoryname">Category Name (must be unique)</label>
             <input type="text" name="categoryname" autocomplete="off" value="{{ $categories->category }}" maxlength="254" required>
             <br/><br/>
             <input type="submit" value="Confirm Changes">

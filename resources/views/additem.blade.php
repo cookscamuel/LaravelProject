@@ -1,3 +1,9 @@
+<!--
+    Author: Samuel Cook
+    Date: December 12, 2024
+    Sorry for clunkiness, this was all new to me.
+-->
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -21,15 +27,17 @@
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <h1>New Item</h1>
         <fieldset style="width: 30vw;">
+        <!-- Form to add a new item. -->
         <form action="{{ route('/items/create/results') }}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
             {{ csrf_field() }}
 
-            <label for="itemname">Item Name:</label>
+            <!-- Tell the user the rules of entry. No error message, sorry :( -->
+            <label for="itemname">Item Name (must be unique):</label>
             <input type="text" name="itemname" autocomplete="off" maxlength="254" required>
             <br/><br/>
             <label for="categoryid">Category:</label>
-            <select name="categoryid" id="categoryid">
-                @foreach ($allCats as $cat)
+            <select name="categoryid" id="categoryid" required> <!-- makes it so the user can't make an item with no categories -->
+                @foreach ($allCats as $cat) <!-- Display each category name as an option, with its ID as the value. -->
                 <option value="{{ $cat->category_id }}">{{ $cat->category}}</option>
                 @endforeach
             </select>
@@ -38,18 +46,20 @@
             <input type="text" name="desc" autocomplete="off" maxlength="254" required>
             <br/><br/>
             <label for="price">Price: $</label>
+            <!-- Increment by 0.01 allows for floats, regex makes sure its an integer or a float. Sorry, no JS validation. -->
             <input type="number" name="price" autocomplete="off" min="0" step="0.01" pattern="^[\d.]+$" required>
             <br/><br/>
             <label for="quantity">Quantity:</label>
             <input type="number" name="quantity" autocomplete="off" min="0" pattern="^[\d.]+$" required>
             <br/><br/>
-            <label for="sku">SKU:</label>
+            <!-- Display the rules of entry again. -->
+            <label for="sku">SKU (must be unique):</label>
             <input type="text" name="sku" autocomplete="off" maxlength="254" required>
             <br/><br/>
             <label for="picture">Image:</label>
+            <!-- Encourage the user to upload those file types. -->
             <input type="file" name="picture" accept=".jpeg,.jpg,.png,.gif,.webp" maxlength="254" required>
-            <p><i>Supported file types: .jpeg .jpg .png .gif .webp</i></p>
-            <br/><br/>
+            <p>Supported file types: .jpeg .jpg .png .gif .webp</p>
             <input type="submit" value="Create Item">
         </form>
         <br/>

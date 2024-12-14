@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
-            $table->increments('item_id');
+        Schema::create('items', function (Blueprint $table) { // Schema that automatically makes a table.
+            $table->increments('item_id'); // PK
             $table->integer('category_id');
-            $table->string('name')->unique();
+            $table->string('name')->unique(); // Force unique names.
             $table->string('description');
             $table->double('price');
             $table->integer('quantity');
-            $table->string('sku')->unique();
-            $table->string('picture_path');
+            $table->string('sku')->unique(); // ... and SKUs.
+            $table->string('picture_path'); // Store the image path instead of the image because why would you even do that.
             $table->timestamps();
         });
     }
